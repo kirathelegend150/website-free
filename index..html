@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Tin tức Game</h2>
+<ul>
+    {% for article in news %}
+        <li><a href="{{ article.link }}">{{ article.title }}</a></li>
+    {% endfor %}
+</ul>
+
+{% if current_user.is_authenticated %}
+    <form method="POST" action="{{ url_for('comment') }}">
+        {{ form.hidden_tag() }}
+        <textarea name="content"></textarea>
+        <button type="submit">Bình luận</button>
+    </form>
+{% endif %}
+{% endblock %}
